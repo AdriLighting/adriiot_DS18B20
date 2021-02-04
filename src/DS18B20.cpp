@@ -48,6 +48,8 @@ void DS18B20Class::read_temperature(float & result, boolean & isNan){
 	float temp = _module->getTempCByIndex(0);
 	if(temp != DEVICE_DISCONNECTED_C) 	isNan = true;
 	else 								isNan = false;
+	if (!isNan) {result = _last_t; return;}
+	_last_t = temp;
 	result = temp;
 }
 void DS18B20Class::read_temperatureF(float & result, boolean & isNan){
@@ -55,6 +57,8 @@ void DS18B20Class::read_temperatureF(float & result, boolean & isNan){
 	float temp = _module->getTempFByIndex(0);
 	if(temp != DEVICE_DISCONNECTED_C) 	isNan = true;
 	else 								isNan = false;
+	if (!isNan) {result = _last_f; return;}
+	_last_f = temp;	
 	result = temp;
 }
 void DS18B20Class::json(JsonObject & root){

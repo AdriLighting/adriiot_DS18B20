@@ -12,6 +12,8 @@
 	{
 		OneWire  			* _whire;
 		DallasTemperature  	* _module;
+		float 				_last_t = 0;
+		float 				_last_f = 0;
 	public:
 		DS18B20Class(int pin);
 		~DS18B20Class(){};
